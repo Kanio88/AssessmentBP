@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Business Plan - Everyday Care Plus Ltd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --a4-width: 210mm;
+            --a4-height: 297mm;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .a4-page {
+            width: var(--a4-width);
+            height: var(--a4-height);
+            padding: 20mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            
+            html, body {
+                width: var(--a4-width);
+                height: auto !important;
+                background: white !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+            }
+
+            #root {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+            }
+
+            .main-wrapper {
+                padding: 0 !important;
+                margin: 0 !important;
+                height: auto !important;
+            }
+
+            .a4-page {
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                width: var(--a4-width) !important;
+                height: var(--a4-height) !important;
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+                break-after: page !important;
+                display: flex !important;
+                position: relative !important;
+                overflow: hidden !important;
+                padding: 20mm !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        h1, h2, h3 {
+            color: #1e3a8a;
+        }
+
+        .teal-accent {
+            color: #0d9488;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            text-align: left;
+            padding: 10px 8px;
+            border-bottom: 2px solid #cbd5e1;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .total-row {
+            background-color: #eff6ff !important;
+            border-top: 2px solid #1e3a8a;
+            font-weight: 700;
+        }
+
+        .total-row td {
+            color: #1e3a8a;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 0.75rem 0;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+</body>
+</html>
