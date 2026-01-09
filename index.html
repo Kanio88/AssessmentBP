@@ -43,7 +43,7 @@
             
             html, body {
                 width: var(--a4-width);
-                height: auto !important;
+                height: var(--a4-height);
                 background: white !important;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -53,13 +53,11 @@
             #root {
                 margin: 0 !important;
                 padding: 0 !important;
-                height: auto !important;
             }
 
             .main-wrapper {
                 padding: 0 !important;
                 margin: 0 !important;
-                height: auto !important;
             }
 
             .a4-page {
@@ -151,9 +149,11 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root"></div>
     <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
   FileText, 
@@ -9,7 +9,9 @@ import {
   ShieldCheck, 
   PieChart, 
   Printer,
+  Calendar,
   MapPin,
+  Clock,
   HeartPulse,
   Info,
   ChevronRight,
@@ -155,23 +157,15 @@ const Figure3 = () => (
 );
 
 const App = () => {
-  const [isPrinting, setIsPrinting] = useState(false);
-
-  useEffect(() => {
-    const handleBeforePrint = () => setIsPrinting(true);
-    const handleAfterPrint = () => setIsPrinting(false);
-
-    window.addEventListener('beforeprint', handleBeforePrint);
-    window.addEventListener('afterprint', handleAfterPrint);
-
-    return () => {
-      window.removeEventListener('beforeprint', handleBeforePrint);
-      window.removeEventListener('afterprint', handleAfterPrint);
-    };
-  }, []);
+  const [isPreparing, setIsPreparing] = useState(false);
 
   const handlePrint = () => {
-    window.print();
+    setIsPreparing(true);
+    // Short delay to allow UI to update if needed, then trigger print
+    setTimeout(() => {
+      window.print();
+      setIsPreparing(false);
+    }, 500);
   };
 
   const tocItems = [
@@ -192,21 +186,24 @@ const App = () => {
       <div className="no-print fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
         <button 
           onClick={handlePrint}
-          className="bg-blue-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 hover:bg-blue-800 transition-all transform hover:scale-105 active:scale-95 group"
+          disabled={isPreparing}
+          className="bg-blue-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 hover:bg-blue-800 transition-all transform hover:scale-105 active:scale-95 group disabled:opacity-70 disabled:scale-100"
         >
-          {isPrinting ? (
+          {isPreparing ? (
             <Loader2 size={20} className="animate-spin" />
           ) : (
             <Printer size={20} className="group-hover:animate-pulse" />
           )}
-          <span className="font-bold">{isPrinting ? 'Printing...' : 'Export PDF'}</span>
+          <span className="font-bold">{isPreparing ? 'Preparing PDF...' : 'Export PDF'}</span>
         </button>
-        <div className="bg-white/90 backdrop-blur-sm border border-blue-200 p-3 rounded-xl shadow-lg max-w-xs text-[10px] text-blue-800 flex gap-2 items-center">
-          <Info size={14} className="flex-shrink-0 text-teal-600" />
-          <p>
-            Standard A4 210x297mm layout. Use <strong>Save as PDF</strong> in the print dialog.
-          </p>
-        </div>
+        {!isPreparing && (
+          <div className="bg-white/90 backdrop-blur-sm border border-blue-200 p-3 rounded-xl shadow-lg max-w-xs text-[10px] text-blue-800 flex gap-2 items-center">
+            <Info size={14} className="flex-shrink-0 text-teal-600" />
+            <p>
+              Professional 210x297mm A4 formatting. Set <strong>Margins</strong> to 'None' in print dialog.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* PAGE 1: COVER & TABLE OF CONTENTS */}
